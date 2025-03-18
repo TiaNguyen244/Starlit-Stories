@@ -1,0 +1,122 @@
+[
+  {
+    "title": "The Lost Kingdom",
+    "author": "Alice Harper",
+    "category": "Fantasy",
+    "price": 15.99,
+    "rating": 4.5,
+    "stock": 30,
+    "published_year": 2018,
+    "isbn": "978-3-16-148410-0",
+    "description": "A thrilling adventure in a lost world full of magic and secrets.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "Deep Space Journey",
+    "author": "Michael Carter",
+    "category": "Science Fiction",
+    "price": 22.50,
+    "rating": 4.8,
+    "stock": 15,
+    "published_year": 2022,
+    "isbn": "978-1-23-456789-0",
+    "description": "Exploring the far reaches of space, humanity encounters an unknown force.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "Mystery at Elmwood Manor",
+    "author": "Sophia Bennett",
+    "category": "Mystery",
+    "price": 12.99,
+    "rating": 4.3,
+    "stock": 50,
+    "published_year": 2020,
+    "isbn": "978-0-12-345678-9",
+    "description": "A detective unravels the secrets of a haunted manor with a dark past.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "The Art of Mindfulness",
+    "author": "Dr. Emily Collins",
+    "category": "Self-Help",
+    "price": 18.99,
+    "rating": 4.7,
+    "stock": 25,
+    "published_year": 2021,
+    "isbn": "978-4-56-789012-3",
+    "description": "Practical techniques to reduce stress and improve well-being through mindfulness.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "History of the Ancient World",
+    "author": "James Thornton",
+    "category": "Non-fiction",
+    "price": 20.00,
+    "rating": 4.6,
+    "stock": 10,
+    "published_year": 2019,
+    "isbn": "978-5-67-890123-4",
+    "description": "A detailed look at ancient civilizations and their impact on modern society.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "Cooking with Passion",
+    "author": "Olivia Martinez",
+    "category": "Non-fiction",
+    "price": 14.50,
+    "rating": 4.2,
+    "stock": 40,
+    "published_year": 2017,
+    "isbn": "978-6-78-901234-5",
+    "description": "A collection of delicious recipes and cooking tips for food lovers.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "Digital Fortress",
+    "author": "John Stevenson",
+    "category": "Thriller",
+    "price": 19.99,
+    "rating": 4.5,
+    "stock": 20,
+    "published_year": 2023,
+    "isbn": "978-7-89-012345-6",
+    "description": "A cyber-thriller exploring the dangers of digital espionage and encryption.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "The Enchanted Garden",
+    "author": "Lily Anderson",
+    "category": "Fantasy",
+    "price": 16.75,
+    "rating": 4.4,
+    "stock": 35,
+    "published_year": 2016,
+    "isbn": "978-8-90-123456-7",
+    "description": "A young girl discovers a magical garden that holds the key to her destiny.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "The Startup Playbook",
+    "author": "David Wilson",
+    "category": "Self-Help",
+    "price": 21.00,
+    "rating": 4.8,
+    "stock": 12,
+    "published_year": 2020,
+    "isbn": "978-9-01-234567-8",
+    "description": "Essential strategies for launching and growing a successful business.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "title": "The Hidden Truth",
+    "author": "Emma Roberts",
+    "category": "Mystery",
+    "price": 13.25,
+    "rating": 4.3,
+    "stock": 45,
+    "published_year": 2022,
+    "isbn": "978-0-98-765432-1",
+    "description": "A gripping mystery novel where secrets unravel in unexpected ways.",
+    "image_url": "https://via.placeholder.com/150"
+  }
+]

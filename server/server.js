@@ -5,7 +5,7 @@ import express from 'express';
 // Import API routes
 import booksRoute from "./routes/booksRoute.js"
 import genresRoute from "./routes/genresRoute.js"
-
+import ordersRoute from "./routes/ordersRoute.js"
 dotenv.config();
 
 const app= express();
@@ -45,7 +45,7 @@ app.get("/", (req, res)=> {
 // Mount routes under /api
 app.use("/books", booksRoute);
 app.use("/genre", genresRoute);
-// app.use("/api/checkout", orderRoutes);
+app.use("/order", ordersRoute);
 
 // Start server
 async function startServer() {

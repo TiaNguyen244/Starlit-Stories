@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import GetRecommendation from './GetRecommendation';
+import GetRecommendation from './components/GetRecommendation';
 import React, { useState, useEffect } from "react";
 
 function App() {

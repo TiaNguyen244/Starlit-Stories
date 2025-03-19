@@ -2,33 +2,34 @@ import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import SendModel from './SendModel';
+import GetRecommendation from './GetRecommendation';
 import React, { useState, useEffect } from "react";
 
 function App() {
 
   const [data, setData] = useState([]);
-
+  let book_display = []
+  const API_URI = "http://localhost:3000/books";
   useEffect(() => {
-      const fetchData = async () => {
-        try {
-          // const response = await fetch(import.meta.env.VITE_SOCKS_API_URL);
-          const response = await fetch(
-            `http://localhost:5000/rec/978-1-384-02055-6`
-          );
-          if (!response.ok) {
-            throw new Error("Data could not be fetched!");
-          }
-          const json_response = await response.json();
-          console.log(json_response)
-          setData(json_response); // assign JSON response to the data variable.
-        } catch (error) {
-          console.error("Error fetching socks:", error);
+    const fetchData = async () => {
+      try {
+        // const response = await fetch(import.meta.env.VITE_SOCKS_API_URL);
+        const response = await fetch(API_URI);
+        if (!response.ok) {
+          throw new Error("Data could not be fetched!");
         }
-      };
-  
-      fetchData();
-    }, []);
+        const json_response = await response.json();
+        setData(json_response); // assign JSON response to the data variable.
+        console.log(json_response)
+        book_display = json_response
+        console.log(book_display)
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -117,7 +118,7 @@ function App() {
             Welcome to Starlit Stories
             <div className="card-container"></div>
           </div>
-          <SendModel >{data}</SendModel>
+          <GetRecommendation ></GetRecommendation>
         </div>
       </main>
     </>

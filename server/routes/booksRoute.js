@@ -1,49 +1,61 @@
 // server/routes/bookRoutes.js
 import express from "express";
 import { ObjectId } from "mongodb";
-import axios from "axios";
 
 const router = express.Router();
 
-// GET /api/books
-// Optional query parameters: search (text in name) and category
+// GET /books
+// Get all books with optional filters
 router.get("/", async (req, res) => {
   try {
-    const client = req.app.locals.client;
-    const db = client.db("bookstore");
-    const { search, category } = req.query;
-    let query = {};
+    const { db } = req.app.locals
+    const collection = db.collection("books")
 
-    if (search) {
-      // Simple text search on book name (case-insensitive)
-      query.name = { $regex: search, $options: "i" };
-    }
-    if (category) {
-      query.category = category;
+    // Build query based on request parameters
+    const query = {}
+
+    if (req.query.featured) {
+      query.featured = req.query.featured === "true"
     }
 
-    const books = await db.collection("books").find(query).toArray();
-    res.json(books);
+    if (req.query.genre) {
+      query.genre = req.query.genre
+    }
+
+    const books = await collection.find(query).toArray()
+    res.json(books)
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error fetching books:", error)
+    res.status(500).json({ error: "Internal server error" })
   }
-});
+})
 
-// GET /api/books/:id - Retrieve book details by _id
+
+// Get book by ID
 router.get("/:id", async (req, res) => {
   try {
-    const client = req.app.locals.client;
-    const db = client.db("bookstore");
-    const book = await db
-      .collection("books")
-      .findOne({ _id: new ObjectId(req.params.id) });
+    const { db } = req.app.locals
+    const collection = db.collection("books")
+    const { id } = req.params
+
+    let book
+    try {
+      book = await collection.findOne({ _id: new ObjectId(id) })
+    } catch (error) {
+      // If ID is not a valid ObjectId, try to find by string ID
+      book = await collection.findOne({ id: Number.parseInt(id) })
+    }
 
     if (!book) {
-      return res.status(404).json({ message: "Book not found" });
+      return res.status(404).json({ error: "Book not found" })
     }
-    res.json(book);
+
+    res.json(book)
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error fetching book:", error)
+    res.status(500).json({ error: "Internal server error" })
   }
-});
+})
+
+
 export default router;

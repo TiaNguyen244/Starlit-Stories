@@ -30,6 +30,3 @@ def get_recommendation(isbn):
     print("\nRecommended Products:")
     print(recommended_products)
     return recommended_products
-
-
-get_recommendation("978-1-969296-83-3")

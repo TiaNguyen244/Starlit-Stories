@@ -14,3 +14,24 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+// Get cart by userId or sessionId
+
+
+
+
+// Get cart by userId or sessionId
+
+
+
+
+// Get cart by userId or sessionId
+
+
+
+
+
+// Get all unprocessed carts for recommendation training
+
+
+        // Find carts that haven't been processed for recommendations

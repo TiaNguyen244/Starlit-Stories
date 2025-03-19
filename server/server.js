@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 // Import API routes
-import bookRoutes from "./routes/booksRoute.js"
+import booksRoute from "./routes/booksRoute.js"
+import genresRoute from "./routes/genresRoute.js"
 
 dotenv.config();
 
@@ -42,8 +43,8 @@ app.get("/", (req, res)=> {
 
 
 // Mount routes under /api
-app.use("/books", bookRoutes);
-// app.use("/api/cart", cartRoutes);
+app.use("/books", booksRoute);
+app.use("/genre", genresRoute);
 // app.use("/api/checkout", orderRoutes);
 
 // Start server

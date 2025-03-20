@@ -33,7 +33,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      navigate(`/books/search/${encodeURIComponent(searchQuery.trim())}`)
+      navigate(`/books/genre/${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery("");
     }
   }

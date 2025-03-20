@@ -7,7 +7,7 @@ import BookListPage from "./pages/BookListPage"
 import HomePage from "./pages/HomePage"
 import BookDetailPage from "./pages/BookDetailPage"
 import CartPage from "./pages/CartPage"
-
+import CheckoutPage from "./pages/CheckoutPage"
 import { CartProvider } from "./context/CartContext"
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
                 <Route path="/books/genre/:genre" element={<BookListPage />} />
                 <Route path="/books/genre/:genre/subGenre/:subGenre" element={<BookListPage />} />
                 <Route path="/books/:id" element={<BookDetailPage />} />
-
+                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/cart" element={<CartPage />} />
 
 

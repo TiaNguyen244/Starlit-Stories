@@ -5,7 +5,8 @@ import express from 'express';
 // Import API routes
 import booksRoute from "./routes/booksRoute.js"
 import genresRoute from "./routes/genresRoute.js"
-import ordersRoute from "./routes/ordersRoute.js"
+import ordersRoute from "./routes/ordersRoute.js";
+import cartRoute from "./routes/cartRoute.js";
 dotenv.config();
 
 const app= express();
@@ -46,6 +47,7 @@ app.get("/", (req, res)=> {
 app.use("/books", booksRoute);
 app.use("/genre", genresRoute);
 app.use("/order", ordersRoute);
+app.use("/cart", cartRoute);
 
 // Start server
 async function startServer() {

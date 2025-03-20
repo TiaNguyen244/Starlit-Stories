@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.js"
 import "./App.css";
 import BookListPage from "./pages/BookListPage"
 import HomePage from "./pages/HomePage"
+import BookDetailPage from "./pages/BookDetailPage";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
               <Route path="/books" element={<BookListPage />} />
               <Route path="/books/genre/:genre" element={<BookListPage />} />
               <Route path="books/genre/:genre/subGenre/:subGenre" element={<BookListPage />} />
+              <Route path="/books/:id" element={<BookDetailPage />} />
             </Routes>
           </main>
         </div>

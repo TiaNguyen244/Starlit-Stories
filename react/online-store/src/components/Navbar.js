@@ -1,12 +1,35 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
+
+import "./Navbar.css" 
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [genres, setGenres] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const navigate = useNavigate()
 
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/genre")
+        if (response.ok) {
+          const data = await response.json()
+          setGenres(data)
+        }
+      } catch (error) {
+        console.error("Error fetching genres:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchGenres()
+  }, [])
+console.log("Genre", genres)
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
@@ -53,32 +76,40 @@ const Navbar = () => {
               >
                 Genre
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/books/genre/Fiction">
-                    Fiction
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/books/genre/Non-Fiction">
-                    Non-Fiction
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/books/genre/Mystery">
-                    Mystery
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/books/genre/Science Fiction">
-                    Science Fiction
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/books/genre/Fantasy">
-                    Fantasy
-                  </Link>
-                </li>
+              <ul className="dropdown-menu multi-level">
+                {loading ? (
+                  <li>
+                    <span className="dropdown-item">Loading...</span>
+                  </li>
+                ) : (
+                  genres.map((genre) => (
+                    <li
+                      key={genre._id || genre.name}
+                      className={genre.sub_genres?.length > 0 ? "dropdown-submenu" : ""}
+                    >
+                      <Link to={`/books/genre/${encodeURIComponent(genre.name)}`} className="dropdown-item">
+                        {genre.name}
+                      </Link>
+
+                      {genre.sub_genres && genre.sub_genres.length > 0 && (
+                        <ul className="dropdown-menu">
+                          {genre.sub_genres.map((subGenre) => (
+                            <li key={subGenre.name}>
+                              <Link
+                                to={`/genre/${encodeURIComponent(genre.name)}/sub-genres/${encodeURIComponent(subGenre.name)}/books`}
+                                className="dropdown-item"
+                              >
+                                {subGenre.name}{" "}
+                              </Link>
+                            </li>
+                            
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  )
+                )
+                )}
               </ul>
             </li>
           </ul>

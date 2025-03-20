@@ -1,56 +1,35 @@
-import React from "react";
+import { Link } from "react-router-dom"
 
-const Book = (props) => {
+const Book = ({ book }) => {
+  // Default image 
+  const coverImage = book.coverImage || "https://via.placeholder.com/150x225?text=No+Cover"
+
   return (
-    <div
-      className="card"
-      style={{ flex: "1", minWidth: "300px", maxWidth: "45%" }}
-    >
-      <div className="card-body">
-        <h5 className="card-title">Sock Details</h5>
-        <div className="card-text">Size: {props.data.sockDetails.size}</div>
-        <div className="card-text">Color: {props.data.sockDetails.color}</div>
-        <div className="card-text">
-          Pattern: {props.data.sockDetails.pattern}
+    <div className="col-md-4 col-lg-3 mb-4">
+      <div className="card h-100">
+        <div className="text-center pt-3">
+          <img
+            src={coverImage || "/placeholder.svg"}
+            className="card-img-top"
+            alt={book.title}
+            style={{ height: "200px", width: "auto", objectFit: "contain" }}
+          />
         </div>
-        <div className="card-text">
-          Material: {props.data.sockDetails.material}
+        <div className="card-body d-flex flex-column">
+          <h5 className="card-title">{book.title}</h5>
+          <p className="card-text text-muted">by {book.author}</p>
+          <p className="card-text">
+            <small className="text-muted">{book.genre}</small>
+          </p>
+          {/* <p className="card-text fw-bold">${book.price?.toFixed(2) || "N/A"}</p> */}
+          <Link to={`/books/${book._id || book.id}`} className="btn btn-primary mt-auto">
+            View Details
+          </Link>
         </div>
-        <div className="card-text">
-          Condition: {props.data.sockDetails.condition}
-        </div>
-        <div className="card-text">
-          For Foot: {props.data.sockDetails.forFoot}
-        </div>
-      </div>
-      <div className="card-body">
-        <h5 className="card-title">Additional Features</h5>
-        <div className="card-text">
-          Water Resistant:{" "}
-          {props.data.additionalFeatures.waterResistant ? "Yes" : "No"}
-        </div>
-        <div className="card-text">
-          Padded: {props.data.additionalFeatures.padded ? "Yes" : "No"}
-        </div>
-        <div className="card-text">
-          Anti Bacterial:{" "}
-          {props.data.additionalFeatures.antiBacterial ? "Yes" : "No"}
-        </div>
-      </div>
-      <div
-        className="card-footer"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <small className="text-muted">Added: {props.data.addedTimestamp}</small>
-        <button
-          className="btn btn-sm btn-danger"
-          onClick={() => props.handleDelete(props.data._id)}
-        >
-          Delete
-        </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Book;
+export default Book
+

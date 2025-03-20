@@ -92,7 +92,7 @@ router.get("/:genre/sub-genres/:subGenre/books", async (req, res) => {
         sub_genre: subGenre,
       })
       .toArray()
-
+      
     res.json(books)
   } catch (error) {
     console.error("Error fetching books by sub-genre:", error)

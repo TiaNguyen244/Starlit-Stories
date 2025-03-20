@@ -1,0 +1,62 @@
+[
+  {
+    "author": "Suzanne Collins",
+    "title": "Sunrise on the Reaping",
+    "genre": "Fiction",
+    "sub_genre": "Young Adult",
+    "price": "$24.99",
+    "year": "2025",
+    "rating": 4.96,
+    "ISBN": "978-1-546-17146-1",
+    "description": "The Fiftieth Annual Hunger Games are about to begin. Who will be tribute? Who will live and die? Return to Panem for more pulse-pounding action than ever before. Oh, and may the odds be ever in your favor.",
+    "coverImage": "react/online-store/src/images/book1.jpg"
+  },
+  {
+    "author": "Mel Robbins",
+    "title": "The Let Them Theory",
+    "genre": "Non-Fiction",
+    "sub_genre": "How-To",
+    "price": "$27.99",
+    "year": "2025",
+    "rating": 4.72,
+    "ISBN": "978-1-401-97136-6",
+    "description": "A life-changing tool millions of people can’t stop talking about. What if the key to happiness, success, and love was as simple as two words?.",
+    "coverImage": "images/book2.jpg"
+  },
+  {
+    "author": "Genki Kawamura",
+    "title": "If Cats Disappeared from the World",
+    "genre": "Fiction",
+    "sub_genre": "Young Adult",
+    "price": "$19.99",
+    "year": "2025",
+    "rating": 4.45,
+    "ISBN": "978-1-250-25768-0",
+    "description": "Tender, hopeful and cozier than drinking your favorite tea, uncover the mysteries of life alongside one unforgettable character and his loyal companion in this big-hearted story.",
+    "coverImage": "images/book3.jpg"
+  },
+  {
+    "author": "Bess Kalb",
+    "title": "Buffalo Fluffalo",
+    "genre": "Fiction",
+    "sub_genre": "Illustrated",
+    "price": "$17.99",
+    "year": "2025",
+    "rating": 4.39,
+    "ISBN": "979-8-217-03065-1",
+    "description": "Centering on the unique lead character Huffalo Buffalo, who also happens to be very fluffy, this is a story that will inspire kids and grownups to accept who they are.",
+    "coverImage": "images/book4.jpg"
+  },
+  {
+    "author": "Rebecca Yarros",
+    "title": "Fourth Wing",
+    "genre": "Fiction",
+    "sub_genre": "Fantasy",
+    "price": "$23.99",
+    "year": "2024",
+    "rating": 4.72,
+    "ISBN": "978-1-649-37737-1",
+    "description": "A young scribe is thrust into an elite war college for dragon riders where the only rule is graduate or perish. An addictive fantasy with epic levels of spice and world-building.",
+    "coverImage": "images/book5.jpg"
+  }
+]

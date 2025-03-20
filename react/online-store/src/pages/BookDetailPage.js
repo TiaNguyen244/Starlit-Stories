@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { useCart } from "../context/CartContext"
+import Recommendation from "../components/Recommendation"
 
 const BookDetailPage = () => {
   const { id } = useParams()
@@ -161,6 +162,7 @@ const BookDetailPage = () => {
           </div>
         </div>
       </div>
+      <Recommendation isbn={book.ISBN}/>
     </div>
   )
 }

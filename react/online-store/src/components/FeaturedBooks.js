@@ -68,9 +68,9 @@ const FeaturedBooks = () => {
               No books found. Try a different search or category.
             </div>
           ) : (
-            <div className="row">
+            <div className="column">
               {books.map((book) => (
-                <div className="col-md-4 col-lg-3 mb-4">
+                <div className="row-md-4 row-lg-3 mb-4">
                   <div className="card h-100">
                     <div className="text-center pt-3">
                       <img
@@ -90,12 +90,14 @@ const FeaturedBooks = () => {
                       <p className="card-text">
                         <small className="text-muted">{book.genre}</small>
                       </p>
+                      <p className="card-text">{book.description}</p>
+                      <p className="card-title">Price: {book.price}</p>
                       {/* <p className="card-text fw-bold">${book.price?.toFixed(2) || "N/A"}</p> */}
                       <Link
                         to={`/books/${book._id || book.id}`}
                         className="btn btn-primary mt-auto"
                       >
-                        View Details
+                        Add to Cart
                       </Link>
                     </div>
                   </div>

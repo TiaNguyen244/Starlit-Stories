@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import GetRecommendation from './components/GetRecommendation';
+import Recommendation from './components/Recommendation';
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css"

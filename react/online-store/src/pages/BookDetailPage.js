@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { useCart } from "../context/CartContext"
 import Recommendation from "../components/Recommendation"
+import bookPic from "../components/images/book6.jpg";
 
 const BookDetailPage = () => {
   const { id } = useParams()
@@ -86,7 +87,7 @@ const BookDetailPage = () => {
         <div className="col-md-4 mb-4">
           <div className="card border-0">
             <img
-              src={book.coverImage || "/placeholder.svg?height=400&width=300"}
+              src={bookPic || "/placeholder.svg?height=400&width=300"}
               alt={book.title}
               className="img-fluid rounded shadow"
               style={{ maxHeight: "500px", objectFit: "contain" }}

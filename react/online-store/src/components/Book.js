@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import bookPic from "./images/book.jpg";
 
 const Book = ({ book }) => {
   // Default image 
@@ -9,7 +10,7 @@ const Book = ({ book }) => {
       <div className="card h-100">
         <div className="text-center pt-3">
           <img
-            src={coverImage || "/placeholder.svg"}
+            src={bookPic || "/placeholder.svg"}
             className="card-img-top"
             alt={book.title}
             style={{ height: "200px", width: "auto", objectFit: "contain" }}

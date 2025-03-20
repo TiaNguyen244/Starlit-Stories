@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Book from "./Book.js"
 
 import { Link } from "react-router-dom";
+import bookPic from "./images/book.jpg";
 
 function Recommendation(props) {
   const [data, setData] = useState([]);
@@ -58,7 +59,6 @@ function Recommendation(props) {
 
   const getIDfromISBN =  (isbn) =>{
     let book = books.filter((object) => object.ISBN == isbn);
-    console.log(book)
     return book[0]?._id;
 
   }
@@ -73,7 +73,7 @@ function Recommendation(props) {
             <div className="card h-100">
               <div className="text-center pt-3">
                 <img
-                  src="/placeholder.svg"
+                  src= {bookPic}
                   className="card-img-top"
                   alt={book.title}
                   style={{

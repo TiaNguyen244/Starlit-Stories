@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom"
 import { useCart } from "../context/CartContext"
+import bookPic from "../components/images/book.jpg";
 
 const CartPage = () => {
   const { cartItems, cartTotal, updateCartItemQuantity, removeFromCart } = useCart()
@@ -53,7 +54,7 @@ const CartPage = () => {
                     <td>
                       <div className="d-flex align-items-center">
                         <img
-                          src={item.coverImage || "/placeholder.svg?height=80&width=60"}
+                          src={bookPic || "/placeholder.svg?height=80&width=60"}
                           alt={item.title}
                           className="me-3"
                           style={{ width: "60px", height: "80px", objectFit: "cover" }}

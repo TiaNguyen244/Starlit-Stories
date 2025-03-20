@@ -4,37 +4,193 @@
   flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Target-inspired styling */
+:root {
+  --target-red: #cc0000;
+  --target-light-gray: #f7f7f7;
+  --target-dark-gray: #333333;
+  --target-border: #dddddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-primary {
+  background-color: var(--target-red) !important;
+  border-color: var(--target-red) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #a70000 !important;
+  border-color: #a70000 !important;
+}
+
+.btn-outline-light {
+  border-color: white !important;
+  color: white !important;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.bg-primary {
+  background-color: var(--target-red) !important;
+}
+
+.text-primary {
+  color: var(--target-red) !important;
+}
+
+.card {
+  border-radius: 0.5rem;
+  border: 1px solid var(--target-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+.jumbotron {
+  background-color: var(--target-light-gray);
+  border-radius: 0 !important;
+  padding: 2rem !important;
+}
+
+/* Target-inspired footer */
+footer {
+  background-color: var(--target-dark-gray) !important;
+  color: white;
+  padding: 3rem 0 !important;
+}
+
+footer a.text-white:hover {
+  color: #f8f9fa !important;
+  text-decoration: underline !important;
+}
+
+/* Target-inspired badge */
+.badge.bg-primary {
+  background-color: var(--target-red) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--target-dark-gray) !important;
+}
+
+/* Target-inspired breadcrumb */
+.breadcrumb {
+  background-color: transparent !important;
+}
+
+.breadcrumb-item a {
+  color: var(--target-red);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+/* Target-inspired form controls */
+.form-control:focus {
+  border-color: var(--target-red);
+  box-shadow: 0 0 0 0.25rem rgba(204, 0, 0, 0.25);
+}
+
+/* Hero section styling */
+.hero-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.hero-card:hover {
+  transform: none;
+}
+
+.hero-image {
+  position: relative;
+  height: 400px;
+}
+
+.hero-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
   display: flex;
-  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+/* Book carousel styling */
+.book-carousel {
+  position: relative;
+  padding: 0 50px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--target-red);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.9;
 }
 
-.App-link {
-  color: #61dafb;
+.carousel-control:hover {
+  opacity: 1;
+  background-color: #a70000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.carousel-control.prev {
+  left: 0;
+}
+
+.carousel-control.next {
+  right: 0;
+}
+
+.carousel-container {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+/* Logo styling */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
 }

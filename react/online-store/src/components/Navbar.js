@@ -42,6 +42,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <Link className="navbar-brand" to="/">
+        
           Starlit Stories
         </Link>
         <button
@@ -116,7 +117,7 @@ const Navbar = () => {
           </ul>
           <form className="d-flex me-3" onSubmit={handleSearch}>
             <input
-              className="form-control me-2"
+              className="form-control me-0"
               type="search"
               placeholder="Search books..."
               aria-label="Search"
@@ -124,7 +125,7 @@ const Navbar = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button className="btn btn-outline-light" type="submit">
-              Search
+              <i className="bi bi-search"></i>
             </button>
           </form>
             <Link to="/cart" className="btn btn-outline-light position-relative">

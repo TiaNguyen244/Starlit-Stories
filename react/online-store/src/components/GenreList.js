@@ -43,26 +43,25 @@ const GenreList = () => {
   }
 
   return (
-    <div className="card mb-4">
+    <div className="card mb-4 border-0 shadow-sm">
       <div className="card-header bg-primary text-white">
-        <h5 className="mb-0">Browse by Genre</h5>
+        <h5 className="mb-0 fw-bold">Browse by Genre</h5>
       </div>
-      <div className="card-body">
+      <div className="card-body p-0">
         <ul className="list-group list-group-flush">
           {genres.map((genre) => (
-            <li key={genre._id || genre.name} className="list-group-item">
-              <h5>
-                {genre.name}
-              </h5>
+            <li key={genre._id || genre.name} className="list-group-item border-0 py-3">
+              <h6 className="fw-bold mb-2">{genre.name}</h6>
               {genre.sub_genres && genre.sub_genres.length > 0 && (
                 <ul className="list-unstyled ms-3 mt-2">
                   {genre.sub_genres.map((subGenre) => (
-                    <li key={subGenre.name} className="mb-1">
+                    <li key={subGenre.name} className="mb-2">
                       <Link
                         to={`/books/genre/${encodeURIComponent(genre.name)}/subGenre/${encodeURIComponent(subGenre.name)}`}
-                        className="text-decoration-none text-muted"
+                        className="text-decoration-none text-muted d-flex align-items-center"
                       >
-                        {subGenre.name} <span className="badge bg-light text-dark">{subGenre.count}</span>
+                        <i className="bi bi-chevron-right me-1 small"></i>
+                        {subGenre.name} <span className="badge bg-light text-dark ms-2">{subGenre.count}</span>
                       </Link>
                     </li>
                   ))}

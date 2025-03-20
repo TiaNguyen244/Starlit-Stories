@@ -7,7 +7,7 @@ import GenreList from "../components/GenreList"
 
 const BookListPage = () => {
   const { genre, subGenre, query } = useParams()
-  
+
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -18,7 +18,7 @@ const BookListPage = () => {
         let url = "http://localhost:3000/books"
         // If both genre and subgenre are specified, fetch books by subgenre
         if (genre && subGenre) {
-            console.log("345");
+          console.log("345")
         }
         // If only genre is specified, fetch books by genre
         else if (genre) {
@@ -72,13 +72,13 @@ const BookListPage = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container py-4">
       <div className="row">
         <div className="col-md-3">
           <GenreList />
         </div>
         <div className="col-md-9">
-          <h2 className="mb-4">{getPageTitle()}</h2>
+          <h2 className="mb-4 fw-bold">{getPageTitle()}</h2>
 
           {books.length === 0 ? (
             <div className="alert alert-info">No books found. Try a different search or category.</div>

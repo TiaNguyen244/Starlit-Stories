@@ -7,7 +7,7 @@ const Book = ({ book }) => {
 
   return (
     <div className="col-md-4 col-lg-3 mb-4">
-      <div className="card h-100">
+      <div className="card h-100 border-0 shadow-sm">
         <div className="text-center pt-3">
           <img
             src={bookPic || "/placeholder.svg"}
@@ -22,10 +22,12 @@ const Book = ({ book }) => {
           <p className="card-text">
             <small className="text-muted">{book.genre}</small>
           </p>
-          {/* <p className="card-text fw-bold">${book.price?.toFixed(2) || "N/A"}</p> */}
-          <Link to={`/books/${book._id || book.id}`} className="btn btn-primary mt-auto">
-            View Details
-          </Link>
+          <div className="mt-auto">
+            <p className="card-text fw-bold text-primary mb-2">{book.price}</p>
+            <Link to={`/books/${book._id || book.id}`} className="btn btn-primary w-100">
+              View Details
+            </Link>
+          </div>
         </div>
       </div>
     </div>

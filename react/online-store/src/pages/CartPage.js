@@ -64,7 +64,7 @@ const CartPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="text-center align-middle">${item.price || "N/A"}</td>
+                    <td className="text-center align-middle">{item.price}</td>
                     <td className="text-center align-middle">
                       <select
                         className="form-select form-select-sm mx-auto"
@@ -79,7 +79,9 @@ const CartPage = () => {
                         ))}
                       </select>
                     </td>
-                    <td className="text-center align-middle">${((item.price || 0) * item.quantity).toFixed(2)}</td>
+                    <td className="text-center align-middle">
+                      ${((Number.parseFloat(item.price?.replace("$", "")) || 0) * item.quantity).toFixed(2)}
+                    </td>
                     <td className="text-center align-middle">
                       <button
                         className="btn btn-sm btn-outline-danger"

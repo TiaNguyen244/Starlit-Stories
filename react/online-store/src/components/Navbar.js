@@ -34,6 +34,7 @@ const Navbar = () => {
     e.preventDefault()
     if (searchQuery.trim()) {
       navigate(`/books/search/${encodeURIComponent(searchQuery.trim())}`)
+      setSearchQuery("");
     }
   }
 

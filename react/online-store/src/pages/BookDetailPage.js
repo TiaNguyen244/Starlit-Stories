@@ -11,8 +11,9 @@ const BookDetailPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [quantity, setQuantity] = useState(1)
+  const [addedToCart, setAddedToCart] = useState(false)
   const { addToCart } = useCart()
-  
+
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -34,10 +35,16 @@ const BookDetailPage = () => {
     fetchBook()
   }, [id])
 
-   const handleAddToCart = () => {
+  const handleAddToCart = () => {
     if (book) {
-      addToCart({ ...book, quantity });
-      console.log("quantity", quantity)
+      addToCart({ ...book, quantity })
+      setQuantity(1) // Reset quantity after adding to cart
+      console.log("quantity", quantity);
+            // Show added to cart message
+      setAddedToCart(true)
+      setTimeout(() => {
+        setAddedToCart(false)
+      }, 3000)
     }
   }
 
@@ -116,7 +123,7 @@ const BookDetailPage = () => {
                   id="quantity"
                   className="form-select"
                   value={quantity}
-                  onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
                 >
                   {[1, 2, 3, 4, 5].map((num) => (
                     <option key={num} value={num}>
@@ -130,6 +137,13 @@ const BookDetailPage = () => {
                   Add to Cart
                 </button>
               </div>
+            {addedToCart && (
+                <div className="col-auto">
+                  <div className="alert alert-success py-2 mb-0">
+                    Added to cart! <Link to="/cart">View Cart</Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -162,7 +176,7 @@ const BookDetailPage = () => {
           </div>
         </div>
       </div>
-      <Recommendation isbn={book.ISBN}/>
+      <Recommendation isbn={book.ISBN} />
     </div>
   )
 }

@@ -29,8 +29,12 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems))
 
     // Calculate cart count and total
-    const count = cartItems.reduce((total, item) => total + item.quantity, 0)
-    const total = cartItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
+    const count = cartItems.reduce((total, item) => total += item.quantity, 0)
+    const total = cartItems.reduce((sum, item) => {
+      // Handle price formats like "$24.99"
+      const price = Number.parseFloat(item.price?.replace("$", "")) || 0
+      return sum + price * item.quantity
+    }, 0)
 
     setCartCount(count)
     setCartTotal(total)
@@ -39,7 +43,11 @@ export const CartProvider = ({ children }) => {
   const addToCart = (item) => {
     setCartItems((prevItems) => {
       // Check if item already exists in cart
-      const existingItemIndex = prevItems.findIndex((cartItem) => cartItem._id === item._id || cartItem.id === item.id)
+      const existingItemIndex = prevItems.findIndex(
+        (cartItem) =>
+          (cartItem._id && item._id && cartItem._id === item._id) ||
+          (cartItem.id && item.id && cartItem.id === item.id),
+      )
 
       if (existingItemIndex >= 0) {
         // Item exists, update quantity
@@ -55,12 +63,21 @@ export const CartProvider = ({ children }) => {
 
   const updateCartItemQuantity = (itemId, quantity) => {
     setCartItems((prevItems) =>
-      prevItems.map((item) => (item._id === itemId || item.id === itemId ? { ...item, quantity } : item)),
+      prevItems.map((item) => {
+        if ((item._id && item._id === itemId) || (item.id && item.id === itemId)) {
+          return { ...item, quantity }
+        }
+        return item
+      }),
     )
   }
 
   const removeFromCart = (itemId) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId && item.id !== itemId))
+    setCartItems((prevItems) =>
+      prevItems.filter(
+        (item) => (item._id !== itemId || item._id === undefined) && (item.id !== itemId || item.id === undefined),
+      ),
+    )
   }
 
   const clearCart = () => {

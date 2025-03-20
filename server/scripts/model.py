@@ -21,7 +21,7 @@ knn = NearestNeighbors(n_neighbors=4, algorithm='auto').fit(X)
 #print(knn)
 
 #from isbn to index to features
-selected_product_index = df[df['ISBN'] == "978-1-5063-6790-3"].index[0]
+selected_product_index = df[df['ISBN'] == "978-0-449-13361-3"].index[0]
 selected_product_features = pd.DataFrame([X.iloc[selected_product_index]], columns=X.columns)
 print(selected_product_features)
 

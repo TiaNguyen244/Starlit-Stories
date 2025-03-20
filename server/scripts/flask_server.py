@@ -12,7 +12,7 @@ def hello_world():
 
 @app.route('/rec/<isbn>')
 def get_rec(isbn):
-    return get_recommendation(isbn).to_dict()
+    return jsonify(get_recommendation(isbn))
 
 
 if __name__ == '__main__':

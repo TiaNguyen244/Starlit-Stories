@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import OneHotEncoder
+import numpy as np
 import pickle
 import json
 
@@ -28,5 +29,16 @@ def get_recommendation(isbn):
     print("Selected Product:")
     print(df.iloc[selected_product_index])
     print("\nRecommended Products:")
-    print(recommended_products)
-    return recommended_products
+    print(recommended_products["genre"])
+    print(recommended_products["sub_genre"])
+    result = []
+    result1= (recommended_products.iloc[1].to_numpy().tolist())
+    result2 =(recommended_products.iloc[2].to_numpy().tolist())
+    result3=(recommended_products.iloc[3].to_numpy().tolist())
+    result1 = list(map(str, result1))
+    result2= list(map(str, result2))
+    result3= list(map(str, result3))
+    result=[result1, result2, result3]
+    print("RESULTS")
+    print(result)
+    return result

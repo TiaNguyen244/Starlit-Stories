@@ -96,7 +96,7 @@ console.log("Genre", genres)
                           {genre.sub_genres.map((subGenre) => (
                             <li key={subGenre.name}>
                               <Link
-                                to={`/genre/${encodeURIComponent(genre.name)}/sub-genres/${encodeURIComponent(subGenre.name)}/books`}
+                                to={`books/genre/${encodeURIComponent(genre.name)}/subGenre/${encodeURIComponent(subGenre.name)}`}
                                 className="dropdown-item"
                               >
                                 {subGenre.name}{" "}

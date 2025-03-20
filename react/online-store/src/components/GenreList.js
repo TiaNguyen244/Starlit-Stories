@@ -59,7 +59,7 @@ const GenreList = () => {
                   {genre.sub_genres.map((subGenre) => (
                     <li key={subGenre.name} className="mb-1">
                       <Link
-                        to={`/books/genre/${encodeURIComponent(genre.name)}/sub-genres/${encodeURIComponent(subGenre.name)}`}
+                        to={`/books/genre/${encodeURIComponent(genre.name)}/subGenre/${encodeURIComponent(subGenre.name)}`}
                         className="text-decoration-none text-muted"
                       >
                         {subGenre.name} <span className="badge bg-light text-dark">{subGenre.count}</span>

@@ -7,6 +7,7 @@ import GenreList from "../components/GenreList"
 
 const BookListPage = () => {
   const { genre, subGenre, query } = useParams()
+  
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -15,10 +16,17 @@ const BookListPage = () => {
     const fetchBooks = async () => {
       try {
         let url = "http://localhost:3000/books"
-
+        console.log("123");
+        console.log("genre", genre);
+        console.log("subgenre", subGenre);
         // If both genre and subgenre are specified, fetch books by subgenre
         if (genre && subGenre) {
-          url = `http://localhost:3000/genre/${encodeURIComponent(genre)}/sub-genres/${encodeURIComponent(subGenre)}/books`
+            console.log("345");
+            // http://localhost:3000/genre/Non-Fiction/sub-genres/History/books
+             //http://localhost:3000/genre/Non-Fiction/sub-genres/History/books
+             //http://localhost:3000/genre/Non-Fiction/sub-genres/History/books
+          url = `http://localhost:3000/genre/${encodeURIComponent(genre)}/subGenre/${encodeURIComponent(subGenre)}/books`
+            console.log("subgenres url:", url);
         }
         // If only genre is specified, fetch books by genre
         else if (genre) {

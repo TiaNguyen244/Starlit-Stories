@@ -80,7 +80,7 @@ router.get("/:genre/books", async (req, res) => {
 export default router
 
 // Get books by sub-genre
-router.get("/:genre/sub-genres/:subGenre/books", async (req, res) => {
+router.get("/:genre/subGenre/:subGenre/books", async (req, res) => {
   try {
     const { db } = req.app.locals
     const collection = db.collection("books")

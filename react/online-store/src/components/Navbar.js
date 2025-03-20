@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-
+import { useCart } from "../context/CartContext"
 import "./Navbar.css" 
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [genres, setGenres] = useState([])
   const [loading, setLoading] = useState(true)
+  const { cartCount } = useCart()
 
   const navigate = useNavigate()
 
@@ -29,7 +30,6 @@ const Navbar = () => {
 
     fetchGenres()
   }, [])
-console.log("Genre", genres)
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
@@ -126,6 +126,15 @@ console.log("Genre", genres)
               Search
             </button>
           </form>
+            <Link to="/cart" className="btn btn-outline-light position-relative">
+                <i className="bi bi-cart3"></i>
+                {cartCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {cartCount}
+                    <span className="visually-hidden">items in cart</span>
+                </span>
+                )}
+            </Link>
         </div>
       </div>
     </nav>

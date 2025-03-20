@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
+import { useCart } from "../context/CartContext"
 
 const BookDetailPage = () => {
   const { id } = useParams()
@@ -9,7 +10,8 @@ const BookDetailPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [quantity, setQuantity] = useState(1)
-
+  const { addToCart } = useCart()
+  
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -31,6 +33,12 @@ const BookDetailPage = () => {
     fetchBook()
   }, [id])
 
+   const handleAddToCart = () => {
+    if (book) {
+      addToCart({ ...book, quantity });
+      console.log("quantity", quantity)
+    }
+  }
 
   if (loading) {
     return (
@@ -117,7 +125,7 @@ const BookDetailPage = () => {
                 </select>
               </div>
               <div className="col-auto">
-                <button className="btn btn-primary">
+                <button className="btn btn-primary" onClick={handleAddToCart}>
                   Add to Cart
                 </button>
               </div>

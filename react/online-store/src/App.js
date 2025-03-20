@@ -8,10 +8,13 @@ import "./App.css";
 import BookListPage from "./pages/BookListPage"
 import HomePage from "./pages/HomePage"
 import BookDetailPage from "./pages/BookDetailPage";
+import CartPage from "./pages/CartPage";
+import { CartProvider } from "./context/CartContext"
 function App() {
   return (
     <>
       <Router>
+        <CartProvider>
         <div className="App">
           <Navbar />
           <main className="container py-4">
@@ -22,9 +25,11 @@ function App() {
               <Route path="/books/genre/:genre" element={<BookListPage />} />
               <Route path="books/genre/:genre/subGenre/:subGenre" element={<BookListPage />} />
               <Route path="/books/:id" element={<BookDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </main>
         </div>
+        </CartProvider>
       </Router>
     </>
   );

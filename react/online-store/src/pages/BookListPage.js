@@ -15,20 +15,20 @@ const BookListPage = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        let url = "http://localhost:3000/books"
+        let url = "http://localhost:5000/books"
         // If both genre and subgenre are specified, fetch books by subgenre
         if (genre && subGenre) {
           console.log("345")
         }
         // If only genre is specified, fetch books by genre
         else if (genre) {
-          url = `http://localhost:3000/genre/${encodeURIComponent(genre)}/books`
+          url = `http://localhost:5000/genre/${encodeURIComponent(genre)}/books`
         }
 
         // If search query is specified, we would need a search endpoint
         // This is a simplified example - you might need to implement a proper search API
         if (query) {
-          url = `http://localhost:3000/books?search=${encodeURIComponent(query)}`
+          url = `http://localhost:5000/books?search=${encodeURIComponent(query)}`
         }
 
         const response = await fetch(url)

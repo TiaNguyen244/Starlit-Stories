@@ -5,9 +5,18 @@ import { useCart } from "../context/CartContext"
 import bookPic from "../components/images/book.jpg";
 
 const CartPage = () => {
-  const { cartItems, cartTotal, updateCartItemQuantity, removeFromCart } = useCart()
+  const cart = useCart()
+  if (!cart) {
+    return (
+      <div className="container py-5">
+        <div className="alert alert-danger">Cart context is not available. Make sure `CartProvider` wraps the app.</div>
+      </div>
+    )
+  }
 
-  if (cartItems.length === 0) {
+  const { cartItems = [], cartTotal = 0, updateCartItemQuantity, removeFromCart } = cart
+
+  if (!Array.isArray(cartItems) || cartItems.length === 0) {
     return (
       <div className="container py-5">
         <div className="text-center">
@@ -81,7 +90,9 @@ const CartPage = () => {
                       </select>
                     </td>
                     <td className="text-center align-middle">
-                      ${((Number.parseFloat(item.price?.replace("$", "")) || 0) * item.quantity).toFixed(2)}
+                      {'$' + (((typeof item.price === 'string')
+                        ? (Number.parseFloat(item.price.replace('$', '')) || 0)
+                        : (typeof item.price === 'number' ? item.price : 0)) * (Number(item.quantity) || 0)).toFixed(2)}
                     </td>
                     <td className="text-center align-middle">
                       <button
@@ -106,7 +117,7 @@ const CartPage = () => {
               <h5 className="card-title mb-4">Order Summary</h5>
               <div className="d-flex justify-content-between mb-3">
                 <span>Subtotal:</span>
-                <span>${cartTotal.toFixed(2)}</span>
+                <span>${(Number(cartTotal) || 0).toFixed(2)}</span>
               </div>
               <div className="d-flex justify-content-between mb-3">
                 <span>Shipping:</span>
@@ -115,7 +126,7 @@ const CartPage = () => {
               <hr />
               <div className="d-flex justify-content-between mb-4">
                 <strong>Total:</strong>
-                <strong>${cartTotal.toFixed(2)}</strong>
+                <strong>${(Number(cartTotal) || 0).toFixed(2)}</strong>
               </div>
               <div className="d-grid">
                 <Link to="/checkout" className="btn btn-primary">

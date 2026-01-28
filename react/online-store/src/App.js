@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
+import LoginPage from "./pages/LoginPage"
+import SignupPage from "./pages/SignupPage"
+import RequireAuth from "./components/RequireAuth"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.js"
 import "./App.css"
@@ -20,14 +23,72 @@ function App() {
             <Navbar />
             <main className="container py-4">
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/books" element={<BookListPage />} />
-                <Route path="/books/genre/:genre" element={<BookListPage />} />
-                <Route path="/books/genre/:genre/subGenre/:subGenre" element={<BookListPage />} />
-                <Route path="/books/:id" element={<BookDetailPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/order-confirmation/:id" element={<OrderConfirmationPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route
+                  path="/"
+                  element={
+                    <RequireAuth>
+                      <HomePage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/books"
+                  element={
+                    <RequireAuth>
+                      <BookListPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/books/genre/:genre"
+                  element={
+                    <RequireAuth>
+                      <BookListPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/books/genre/:genre/subGenre/:subGenre"
+                  element={
+                    <RequireAuth>
+                      <BookListPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/books/:id"
+                  element={
+                    <RequireAuth>
+                      <BookDetailPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/checkout"
+                  element={
+                    <RequireAuth>
+                      <CheckoutPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/cart"
+                  element={
+                    <RequireAuth>
+                      <CartPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/order-confirmation/:id"
+                  element={
+                    <RequireAuth>
+                      <OrderConfirmationPage />
+                    </RequireAuth>
+                  }
+                />
               </Routes>
             </main>
             <footer className="bg-dark text-white py-4 mt-auto">

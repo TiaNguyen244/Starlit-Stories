@@ -12,11 +12,12 @@ const Navbar = () => {
   const { cartCount } = useCart()
 
   const navigate = useNavigate()
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
 
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await fetch("http://localhost:3000/genre")
+        const response = await fetch("http://localhost:5000/genre")
         if (response.ok) {
           const data = await response.json()
           setGenres(data)
@@ -128,7 +129,7 @@ const Navbar = () => {
               <i className="bi bi-search"></i>
             </button>
           </form>
-            <Link to="/cart" className="btn btn-outline-light position-relative">
+            <Link to="/cart" className="btn btn-outline-light position-relative me-2">
                 <i className="bi bi-cart3"></i>
                 {cartCount > 0 && (
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -137,6 +138,23 @@ const Navbar = () => {
                 </span>
                 )}
             </Link>
+            {token ? (
+              <button
+                className="btn btn-outline-light ms-2"
+                onClick={() => {
+                  localStorage.removeItem('token')
+                  localStorage.removeItem('username')
+                  navigate('/login')
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-outline-light ms-2">Login</Link>
+                <Link to="/signup" className="btn btn-link text-white ms-2">Sign up</Link>
+              </>
+            )}
         </div>
       </div>
     </nav>

@@ -7,6 +7,7 @@ import booksRoute from "./routes/booksRoute.js"
 import genresRoute from "./routes/genresRoute.js"
 import ordersRoute from "./routes/ordersRoute.js";
 import cartRoute from "./routes/cartRoute.js";
+import authRoute from "./routes/authRoute.js";
 dotenv.config();
 
 const app= express();
@@ -48,6 +49,7 @@ app.use("/books", booksRoute);
 app.use("/genre", genresRoute);
 app.use("/order", ordersRoute);
 app.use("/cart", cartRoute);
+app.use("/auth", authRoute);
 
 // Start server
 async function startServer() {

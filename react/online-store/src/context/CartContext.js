@@ -29,11 +29,16 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems))
 
     // Calculate cart count and total
-    const count = cartItems.reduce((total, item) => total += item.quantity, 0)
+    const count = cartItems.reduce((total, item) => total + (Number(item.quantity) || 0), 0)
     const total = cartItems.reduce((sum, item) => {
-      // Handle price formats like "$24.99"
-      const price = Number.parseFloat(item.price?.replace("$", "")) || 0
-      return sum + price * item.quantity
+      // Handle price formats like "$24.99" or numeric prices
+      let priceVal = 0
+      if (typeof item.price === "string") {
+        priceVal = Number.parseFloat(item.price.replace("$", "")) || 0
+      } else if (typeof item.price === "number") {
+        priceVal = item.price
+      }
+      return sum + priceVal * (Number(item.quantity) || 0)
     }, 0)
 
     setCartCount(count)
@@ -41,23 +46,28 @@ export const CartProvider = ({ children }) => {
   }, [cartItems])
 
   const addToCart = (item) => {
+    // Normalize item quantity
+    const normalizedItem = { ...item, quantity: Number(item.quantity) || 1 }
+
     setCartItems((prevItems) => {
       // Check if item already exists in cart
-      const existingItemIndex = prevItems.findIndex(
-        (cartItem) =>
-          (cartItem._id && item._id && cartItem._id === item._id) ||
-          (cartItem.id && item.id && cartItem.id === item.id),
+      const existingItemIndex = prevItems.findIndex((cartItem) =>
+        (cartItem._id && normalizedItem._id && cartItem._id === normalizedItem._id) ||
+        (cartItem.id && normalizedItem.id && cartItem.id === normalizedItem.id),
       )
 
       if (existingItemIndex >= 0) {
         // Item exists, update quantity
         const updatedItems = [...prevItems]
-        updatedItems[existingItemIndex].quantity += item.quantity
+        updatedItems[existingItemIndex] = {
+          ...updatedItems[existingItemIndex],
+          quantity: Number(updatedItems[existingItemIndex].quantity || 0) + normalizedItem.quantity,
+        }
         return updatedItems
-      } else {
-        // Item doesn't exist, add to cart
-        return [...prevItems, item]
       }
+
+      // Item doesn't exist, add to cart
+      return [...prevItems, normalizedItem]
     })
   }
 

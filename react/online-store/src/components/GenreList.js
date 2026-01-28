@@ -11,7 +11,7 @@ const GenreList = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await fetch("http://localhost:3000/genre")
+        const response = await fetch("http://localhost:5000/genre")
         if (!response.ok) {
           throw new Error("Failed to fetch genres")
         }

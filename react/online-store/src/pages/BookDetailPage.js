@@ -18,7 +18,7 @@ const BookDetailPage = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/books/${id}`)
+        const response = await fetch(`http://localhost:5000/books/${id}`)
         if (!response.ok) {
           throw new Error("Failed to fetch book details")
         }
@@ -37,15 +37,20 @@ const BookDetailPage = () => {
   }, [id])
 
   const handleAddToCart = () => {
-    if (book) {
-      addToCart({ ...book, quantity })
+    if (!book) return
+
+    try {
+      // ensure quantity is numeric
+      addToCart({ ...book, quantity: Number(quantity) || 1 })
       setQuantity(1) // Reset quantity after adding to cart
-      console.log("quantity", quantity);
-            // Show added to cart message
+      // Show added to cart message
       setAddedToCart(true)
       setTimeout(() => {
         setAddedToCart(false)
       }, 3000)
+    } catch (err) {
+      console.error('Error adding to cart:', err)
+      setError('Could not add to cart. See console for details.')
     }
   }
 

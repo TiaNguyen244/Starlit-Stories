@@ -9,48 +9,50 @@ router.get("/", async (req, res) => {
     const { db } = req.app.locals
     const collection = db.collection("books")
 
-    // First, get all unique genres with their counts
+    // First, get all unique categories with their counts (books.json uses `category`)
     const mainGenres = await collection
       .aggregate([
-        { $group: { _id: "$genre", count: { $sum: 1 } } },
+        { $group: { _id: "$category", count: { $sum: 1 } } },
         { $project: { _id: 1, name: "$_id", count: 1 } },
         { $sort: { name: 1 } },
       ])
       .toArray()
 
-    // Then, get all unique sub-genres with their counts and parent genre
+    // Then, get all unique sub-genres with their counts and parent category
     const subGenres = await collection
       .aggregate([
         {
           $group: {
-            _id: { genre: "$genre", sub_genre: "$sub_genre" },
+            _id: { category: "$category", sub_genre: "$sub_genre" },
             count: { $sum: 1 },
           },
         },
         {
           $project: {
             _id: 0,
-            genre: "$_id.genre",
+            category: "$_id.category",
             name: "$_id.sub_genre",
             count: 1,
           },
         },
-        { $sort: { genre: 1, name: 1 } },
+        { $sort: { category: 1, name: 1 } },
       ])
       .toArray()
 
     // Organize sub-genres under their parent genres
     const genresWithSubGenres = mainGenres.map((genre) => {
-      const relatedSubGenres = subGenres.filter((subGenre) => subGenre.genre === genre.name)
+      const relatedSubGenres = subGenres.filter((subGenre) => subGenre.category === genre.name)
 
       return {
         _id: genre._id,
         name: genre.name,
         count: genre.count,
-        sub_genres: relatedSubGenres.map((subGenre) => ({
-          name: subGenre.name,
-          count: subGenre.count,
-        })),
+        sub_genres: relatedSubGenres
+          .filter((sg) => sg.name) // exclude null/undefined subgenre names
+          .map((subGenre) => ({
+            name: subGenre.name,
+            count: subGenre.count,
+          })),
       }
     })
 

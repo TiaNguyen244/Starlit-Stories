@@ -12,7 +12,7 @@ const OrderConfirmationPage = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/order/${id}`)
+        const response = await fetch(`http://localhost:5000/order/${id}`)
         if (!response.ok) {
           throw new Error("Failed to fetch order details")
         }

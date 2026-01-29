@@ -82,8 +82,13 @@ const CheckoutPage = () => {
         items: cartItems.map((item) => ({
           bookId: item._id || item.id,
           title: item.title,
-          price: Number.parseFloat(item.price?.replace("$", "") || 0),
-          quantity: item.quantity,
+          price:
+            typeof item.price === "string"
+              ? Number.parseFloat(item.price.replace("$", "")) || 0
+              : typeof item.price === "number"
+              ? item.price
+              : 0,
+          quantity: Number(item.quantity) || 0,
         })),
         totalAmount: cartTotal,
         status: "pending",
@@ -91,7 +96,7 @@ const CheckoutPage = () => {
       }
 
       // Send order to API
-      const response = await fetch("http://localhost:3000/order", {
+      const response = await fetch("http://localhost:5000/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -410,7 +415,13 @@ const CheckoutPage = () => {
                         <div className="fw-bold">{item.title}</div>
                         <small className="text-muted">Qty: {item.quantity}</small>
                       </div>
-                      <span>${((item.price?.replace("$", "") || 0) * item.quantity).toFixed(2)}</span>
+                      <span>{
+                        '$' + (
+                          ((typeof item.price === 'string')
+                            ? (Number.parseFloat(item.price.replace('$', '')) || 0)
+                            : (typeof item.price === 'number' ? item.price : 0)) * (Number(item.quantity) || 0)
+                        ).toFixed(2)
+                      }</span>
                     </li>
                   ))}
                 </ul>
